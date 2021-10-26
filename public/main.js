@@ -1,5 +1,7 @@
 const { app, BrowserWindow } = require('electron')
 require('@electron/remote/main').initialize()
+
+const path = require('path')
 function createWindow(){
     const win = new BrowserWindow({
         width: 800,
@@ -12,6 +14,13 @@ function createWindow(){
     win.loadURL('index.html')
 }
 
+// require('electron-reload')(__dirname, {
+//     electron: path.join(__dirname, 'node_modules', '.bin', 'electron')
+//   });
+const electron = require('electron')
+
+// Enable live reload for all the files inside your project directory
+require('electron-reload')(__dirname);
 app.on('ready',createWindow)
 
 app.on('activate', () => {
